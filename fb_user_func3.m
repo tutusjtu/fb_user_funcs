@@ -1,30 +1,30 @@
 function fb_user_func(figureNumbers,axesNumbers,co)
-% %¹¦ÄÜ: ÔÚÒ»¸öÊäÈë¿òÖĞ·Ö±ğÉèÖÃÖĞÓ¢ÎÄ×ÖÌå
-% Ê¹ÓÃ¸Ã¹¦ÄÜÊ±£¬Îñ±ØÑ¡ÓÃtex½âÊÍÆ÷
+% %åŠŸèƒ½: åœ¨ä¸€ä¸ªè¾“å…¥æ¡†ä¸­åˆ†åˆ«è®¾ç½®ä¸­è‹±æ–‡å­—ä½“
+% ä½¿ç”¨è¯¥åŠŸèƒ½æ—¶ï¼ŒåŠ¡å¿…é€‰ç”¨texè§£é‡Šå™¨
 
-disp('[ÌáÊ¾]Ê¹ÓÃ¸Ã¹¦ÄÜĞèÒªÏÈÇĞ»»µ½texÄ£Ê½')
+disp('[æç¤º]ä½¿ç”¨è¯¥åŠŸèƒ½éœ€è¦å…ˆåˆ‡æ¢åˆ°texæ¨¡å¼')
 
-% %µ÷³ö×ÖÌå°æÑ¡ÔñÖĞÓ¢ÎÄ×ÖÌå
-temp = uisetfont('FBÓ¢ÎÄ×ÖÌå(½ö×ÖÌå)'); %µ÷³ö×ÖÌå°å
+% %è°ƒå‡ºå­—ä½“ç‰ˆé€‰æ‹©ä¸­è‹±æ–‡å­—ä½“
+temp = uisetfont('FBè‹±æ–‡å­—ä½“(ä»…å­—ä½“)'); %è°ƒå‡ºå­—ä½“æ¿
 try
     fontnameEng = temp.FontName;
 catch
     return
 end
 
-temp = uisetfont('FBÖĞÎÄ×ÖÌå(½ö×ÖÌå)'); %µ÷³ö×ÖÌå°å
+temp = uisetfont('FBä¸­æ–‡å­—ä½“(ä»…å­—ä½“)'); %è°ƒå‡ºå­—ä½“æ¿
 try
     fontnameChi = temp.FontName;
 catch
     return
 end
 
-% %¿ªÊ¼´¦Àí×ÖÌå
+% %å¼€å§‹å¤„ç†å­—ä½“
 for i = 1:length(figureNumbers)
     figureNum = figureNumbers(i);
     figure(figureNum)
     
-    % ´¦Àí×ø±êÇøµÄÎÄ×Ö
+    % å¤„ç†åæ ‡åŒºçš„æ–‡å­—
     axesList = findobj(figureNum,'Type','axes');
     
     for j = 1:length(axesList)
@@ -35,19 +35,19 @@ for i = 1:length(figureNumbers)
         axesH.ZLabel.String =  changeFontSeparated(axesH.ZLabel.String ,fontnameEng,fontnameChi);
         axesH.Title.String =  changeFontSeparated(axesH.Title.String ,fontnameEng,fontnameChi);
         
-        for k = 1:length(axesH.XTickLabel)
-            axesH.XTickLabel{k} = changeFontSeparated(axesH.XTickLabel{k} ,fontnameEng,fontnameChi);
-        end
-        for k = 1:length(axesH.YTickLabel)
-            axesH.YTickLabel{k} = changeFontSeparated(axesH.YTickLabel{k} ,fontnameEng,fontnameChi);
-        end
-        for k = 1:length(axesH.ZTickLabel)
-            axesH.ZTickLabel{k} = changeFontSeparated(axesH.ZTickLabel{k} ,fontnameEng,fontnameChi);
-        end
+%         for k = 1:length(axesH.XTickLabel)
+%             axesH.XTickLabel{k} = changeFontSeparated(axesH.XTickLabel{k} ,fontnameEng,fontnameChi);
+%         end
+%         for k = 1:length(axesH.YTickLabel)
+%             axesH.YTickLabel{k} = changeFontSeparated(axesH.YTickLabel{k} ,fontnameEng,fontnameChi);
+%         end
+%         for k = 1:length(axesH.ZTickLabel)
+%             axesH.ZTickLabel{k} = changeFontSeparated(axesH.ZTickLabel{k} ,fontnameEng,fontnameChi);
+%         end
         
-    end % ¶ÔaxsÑ­»·
+    end % å¯¹axså¾ªç¯
     
-    % ´¦ÀíÍ¼ÀıÇøµÄÎÄ×Ö
+    % å¤„ç†å›¾ä¾‹åŒºçš„æ–‡å­—
     legendList = findobj(figureNum,'Type','legend');
     for j = 1:length(legendList)
         legendH = legendList(j);
@@ -58,35 +58,39 @@ for i = 1:length(figureNumbers)
         
         legendH.Title.String = changeFontSeparated(legendH.Title.String,fontnameEng,fontnameChi);
         
-    end % ¶ÔlegendÑ­»·
+    end % å¯¹legendå¾ªç¯
     
-end % ¶ÔfigsÑ­»·
+end % å¯¹figså¾ªç¯
 
 
 function newStr = changeFontSeparated(oldStr,fontname1,fontname2)
 
-% Æ¥Åä×ÖÌåÉèÖÃµÄÕıÔò±í´ïÊ½
-match1 = '\\fontname{+([^\x00-\xff]|\w|\s)+}'; % Æ¥Åä×ÖÌåÉèÖÃ
+% åŒ¹é…å­—ä½“è®¾ç½®çš„æ­£åˆ™è¡¨è¾¾å¼
+match1 = '\\fontname{+([^\x00-\xff]|\w|\s)+}'; % åŒ¹é…å­—ä½“è®¾ç½®
 [startIndex,endIndex] = regexp(oldStr, match1);
 
-% Çå³ıÒÑÓĞµÄtexÉèÖÃ
+% æ¸…é™¤å·²æœ‰çš„texè®¾ç½®
 temp = [];
 for i = 1:length(startIndex)-1
     temp = [temp oldStr(endIndex(i)+1:startIndex(i+1)-1)];
 end
 
-if ~isempty(temp)
+if ~isempty(endIndex) & isempty(temp)
+    temp = oldStr(endIndex(end)+1:end);
+end
+
+if ~isempty(temp)    
     oldStr = temp;
 end
 
-% ¸ù¾İ×ÖÌåÉú³ÉĞÂµÄÉèÖÃ
-matchChinese = '[^\x00-\xff]+'; % Æ¥ÅäÁ¬ĞøÖĞÎÄ´®
+% æ ¹æ®å­—ä½“ç”Ÿæˆæ–°çš„è®¾ç½®
+matchChinese = '[^\x00-\xff]+'; % åŒ¹é…è¿ç»­ä¸­æ–‡ä¸²
 [startIndex,endIndex] = regexp(oldStr, matchChinese);
 oldmatch = {};
 for i = 1:length(startIndex)
     oldmatch = [oldmatch; oldStr(startIndex(i):endIndex(i))];
 end
-oldmatch = unique(oldmatch);%É¾³ıÖØ¸´µÄ
+oldmatch = unique(oldmatch);%åˆ é™¤é‡å¤çš„
 
 for i = 1:length(oldmatch)
     oldStr = strrep(oldStr,oldmatch{i},['\fontname{' fontname2 '}'   oldmatch{i}    '\fontname{' fontname1 '}']);
@@ -95,8 +99,8 @@ end
 newStr = ['\fontname{' fontname1 '}' oldStr];
 
 function [Chinese] = isChinese(ch)
-% ¶ÔÓÚGB2312µÄ×Ö·û£¨¾ÍÊÇÎÒÃÇÆ½Ê±ËùËµµÄÇøÎ»£©£¬Ò»¸öºº×Ö¶ÔÓ¦ÓÚÁ½¸ö×Ö½Ú¡£ Ã¿¸ö×Ö½Ú¶¼ÊÇ´óÓÚA0£¨Ê®Áù½øÖÆ,¼´160£©£¬
-% ÌÈÈô£¬µÚÒ»¸ö×Ö½Ú´óÓÚA0£¬¶øµÚ¶ş¸ö×Ö½ÚĞ¡ÓÚA0£¬ÄÇÃ´ËüÓ¦µ±²»ÊÇºº×Ö£¨½ö½ö¶ÔÓÚGB2312)
+% å¯¹äºGB2312çš„å­—ç¬¦ï¼ˆå°±æ˜¯æˆ‘ä»¬å¹³æ—¶æ‰€è¯´çš„åŒºä½ï¼‰ï¼Œä¸€ä¸ªæ±‰å­—å¯¹åº”äºä¸¤ä¸ªå­—èŠ‚ã€‚ æ¯ä¸ªå­—èŠ‚éƒ½æ˜¯å¤§äºA0ï¼ˆåå…­è¿›åˆ¶,å³160ï¼‰ï¼Œ
+% å€˜è‹¥ï¼Œç¬¬ä¸€ä¸ªå­—èŠ‚å¤§äºA0ï¼Œè€Œç¬¬äºŒä¸ªå­—èŠ‚å°äºA0ï¼Œé‚£ä¹ˆå®ƒåº”å½“ä¸æ˜¯æ±‰å­—ï¼ˆä»…ä»…å¯¹äºGB2312)
 info = unicode2native(ch,'GB2312');
 bytes = size(info,2);
 Chinese = 0;
