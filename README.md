@@ -30,3 +30,5 @@ co - 当前色卡
 降低marker的密度
 ## fb_user_func2.m : 
 去除图例的标题
+## fb_user_func3.m : 
+可以单独设置中文和英文字体
