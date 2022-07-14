@@ -66,6 +66,10 @@ end % 对figs循环
 function newStr = changeFontSeparated(oldStr,fontname1,fontname2)
 
 % 匹配字体设置的正则表达式
+if length(oldStr) == 1
+oldStr = oldStr{1};
+end
+
 match1 = '\\fontname{+([^\x00-\xff]|\w|\s)+}'; % 匹配字体设置
 [startIndex,endIndex] = regexp(oldStr, match1);
 
